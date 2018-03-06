@@ -1,0 +1,47 @@
+﻿@Model List<MyMVCDemo.Models.TransactionHead>
+    @{
+        ViewBag.Title = "TransactionDetail";
+    }
+
+    <h2>TransactionDetail</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Customer Name</td>
+                <td>Staff Name</td>
+                <td>Store</td>
+                <td>Transaction Time</td>
+            </tr>
+        </thead>
+        @foreach (var trans in Model)
+        {
+
+            <thead>
+                <tr>
+                    <td>
+                        @Html.ActionLink((string)trans.Customer.Name
+                       , "CustomerList", "Store",null)
+                    </td>
+                    <td>
+                        @Html.ActionLink((string)trans.Staff.Name
+                       ,"StaffList","Store",null)
+                    </td>
+                    <td>@trans.Store.Name</td>
+                    <td>@trans.date</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in trans.TransactionLine)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>@line.Product.Name</td>
+                        <td>@line.Quantity</td>
+                    </tr>
+                }
+
+            </tbody>
+        }
+    </table>
+

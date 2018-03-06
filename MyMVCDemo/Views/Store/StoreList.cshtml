@@ -1,0 +1,24 @@
+﻿@Model List<MyMVCDemo.Models.Store>
+    @{
+        ViewBag.Title = "Storelist";
+    }
+
+    <h2>Storelist</h2>
+    <table>
+        <tr>
+            <th>Store ID</th>
+            <th>Store Name</th>
+            <th>Transactions</th>
+        </tr>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>@store.ID</td>
+                <td>@store.Name</td>
+                <td><a href="/Store/TransactionDetail?id=@store.ID">detail</a></td>
+
+            </tr>
+        }
+
+    </table>
+
