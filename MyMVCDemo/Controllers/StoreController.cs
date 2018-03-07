@@ -5,49 +5,43 @@ using System.Web;
 using System.Web.Mvc;
 using MyMVCDemo.Models;
 
+
 namespace MyMVCDemo.Controllers
 {
     public class StoreController : Controller
     {
-        private List<TransactionHead> header;
-        public StoreController()
-        {
-            using (var db=new LINQExercisesEntities())
-            {
-                header = db.TransactionHead.Include("TransactionLine.Product")
-                                         .Include("Customer")
-                                         .Include("Staff")
-                                         .Include("Store")
-                                         .ToList();
-            }
-        }
-
+        // GET: Store
         public ActionResult Index()
         {
-            
-            return View(header);
+            return View();
         }
         public ActionResult StoreList()
         {
-            
-            var stores=header.Select(x=>x.Store).Distinct();
 
+            List<Store> stores;
+            using (var db = new LINQExercisesEntities())
+            {
+                stores = db.Store.ToList();
+            }
             return View(stores);
 
         }
-        public ActionResult TransactionDetail(int id=1)
+        public ActionResult NewStore()
         {
-          
-            return View(header);
-        }
-        public ActionResult CustomerList()
-        {
-            var customers = header.Select(x=>x.Customer);
-            return View(customers);
-        }
-        public ActionResult Action()
-        {
+            
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateStore(Store store)
+        {
+            using (var db=new LINQExercisesEntities())
+            {
+                db.Store.Add(store);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("StoreList");
         }
     }
 }

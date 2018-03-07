@@ -1,0 +1,15 @@
+﻿@model List<MyMVCDemo.Models.Store>
+
+@{
+    ViewBag.Title = "NewStore";
+}
+
+<h2>New Store</h2>
+<form method="post" action= "CreateStore">
+    <label>Name:<br /><input type="text" name="Name"></label><br />
+    <label>Address:<br /><input type="text" name="Address"></label><br />
+    <label>Phone:<br /><input type="text" name="Phone"></label><br />
+    <input type="submit" value="SUBMIT" />
+
+</form>
+

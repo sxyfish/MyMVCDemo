@@ -1,0 +1,34 @@
+﻿
+@model MyMVCDemo.Models.Customer
+
+@{
+    ViewBag.Title = "NewStore";
+}
+
+<h2>New Store</h2>
+@using (Html.BeginForm("CreateCustomer","Customer","post"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <input type="submit" value="submit"/>
+    </div>
+
+}
+
+
+
+
+
