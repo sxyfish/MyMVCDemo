@@ -1,0 +1,38 @@
+﻿@model MyMVCDemo.Models.Staff
+
+@{
+    ViewBag.Title = "NewStaff";
+}
+
+<h2>NewStaff</h2>
+
+@using (Html.BeginForm("CreateStaff", "Staff", "post"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Location)
+        @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RoleID)
+        @Html.TextBoxFor(m => m.RoleID, new { @class = "form-control" })
+    </div>
+
+    <div class="checkbox">
+        <label>
+           @Html.CheckBoxFor(m=>m.IsActive) IsActive?
+        </label>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="SUBMIT" />
+    </div>
+
+}
+
+

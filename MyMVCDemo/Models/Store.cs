@@ -18,7 +18,6 @@ namespace MyMVCDemo.Models
         public Store()
         {
             this.TransactionHead = new HashSet<TransactionHead>();
-            this.Staff = new HashSet<Staff>();
         }
     
         public int ID { get; set; }
@@ -26,7 +25,5 @@ namespace MyMVCDemo.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionHead> TransactionHead { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Staff> Staff { get; set; }
     }
 }

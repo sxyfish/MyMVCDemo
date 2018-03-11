@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="varchar" MaxLength="20" />
           <Property Name="Address" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
@@ -20,7 +20,7 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" />
-          <Property Name="Price" Type="money" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -37,14 +37,15 @@
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Location" Type="varchar" MaxLength="50" />
           <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="StaffAssignment">
           <Key>
-            <PropertyRef Name="StaffID" />
-            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="Staff_ID" />
+            <PropertyRef Name="Store_ID" />
           </Key>
-          <Property Name="StaffID" Type="int" Nullable="false" />
-          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="Staff_ID" Type="int" Nullable="false" />
+          <Property Name="Store_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -71,7 +72,7 @@
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="StaffID" Type="int" Nullable="false" />
           <Property Name="StoreID" Type="int" Nullable="false" />
-          <Property Name="date" Type="date" />
+          <Property Name="date" Type="datetime" />
         </EntityType>
         <EntityType Name="TransactionLine">
           <Key>
@@ -102,7 +103,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="StaffAssignment">
-              <PropertyRef Name="StaffID" />
+              <PropertyRef Name="Staff_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -114,7 +115,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="StaffAssignment">
-              <PropertyRef Name="StoreID" />
+              <PropertyRef Name="Store_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,7 +263,7 @@
           <Property Name="RoleID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Staff_Role" FromRole="Staff" ToRole="Role" />
           <NavigationProperty Name="TransactionHead" Relationship="Self.FK_TransactionHead_Staff" FromRole="Staff" ToRole="TransactionHead" />
-          <NavigationProperty Name="Store" Relationship="Self.StaffAssignment" FromRole="Staff" ToRole="Store" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -271,7 +272,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TransactionHead" Relationship="Self.FK_TransactionHead_Store" FromRole="Store" ToRole="TransactionHead" />
-          <NavigationProperty Name="Staff" Relationship="Self.StaffAssignment" FromRole="Store" ToRole="Staff" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -295,7 +295,7 @@
           <NavigationProperty Name="Staff" Relationship="Self.FK_TransactionHead_Staff" FromRole="TransactionHead" ToRole="Staff" />
           <NavigationProperty Name="Store" Relationship="Self.FK_TransactionHead_Store" FromRole="TransactionHead" ToRole="Store" />
           <NavigationProperty Name="TransactionLine" Relationship="Self.FK_TransactionLine_TransactionHead" FromRole="TransactionHead" ToRole="TransactionLine" />
-          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="TransactionLine">
           <Key>
@@ -380,10 +380,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="StaffAssignment">
-          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
-          <End Role="Store" Type="Self.Store" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="LINQExercisesEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="Product" EntityType="Self.Product" />
@@ -417,11 +413,15 @@
             <End Role="TransactionHead" EntitySet="TransactionHead" />
             <End Role="TransactionLine" EntitySet="TransactionLine" />
           </AssociationSet>
-          <AssociationSet Name="StaffAssignment" Association="Self.StaffAssignment">
+          <AssociationSet Name="StaffAssignment1" Association="LINQExercisesModel.StaffAssignment1">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Store" EntitySet="Store" />
           </AssociationSet>
         </EntityContainer>
+        <Association Name="StaffAssignment1">
+          <End Type="LINQExercisesModel.Staff" Role="Staff" Multiplicity="*" />
+          <End Type="LINQExercisesModel.Store" Role="Store" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -458,6 +458,7 @@
           <EntitySetMapping Name="Staff">
             <EntityTypeMapping TypeName="LINQExercisesModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
@@ -505,12 +506,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="StaffAssignment" TypeName="LINQExercisesModel.StaffAssignment" StoreEntitySet="StaffAssignment">
-            <EndProperty Name="Staff">
-              <ScalarProperty Name="ID" ColumnName="StaffID" />
-            </EndProperty>
+          <AssociationSetMapping Name="StaffAssignment1" TypeName="LINQExercisesModel.StaffAssignment1" StoreEntitySet="StaffAssignment">
             <EndProperty Name="Store">
-              <ScalarProperty Name="ID" ColumnName="StoreID" />
+              <ScalarProperty Name="ID" ColumnName="Store_ID" />
+            </EndProperty>
+            <EndProperty Name="Staff">
+              <ScalarProperty Name="ID" ColumnName="Staff_ID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
