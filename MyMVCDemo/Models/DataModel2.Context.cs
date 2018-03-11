@@ -13,10 +13,10 @@ namespace MyMVCDemo.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LINQExercisesEntities : DbContext
+    public partial class LINQExercisesEntities1 : DbContext
     {
-        public LINQExercisesEntities()
-            : base("name=LINQExercisesEntities")
+        public LINQExercisesEntities1()
+            : base("name=LINQExercisesEntities1")
         {
         }
     

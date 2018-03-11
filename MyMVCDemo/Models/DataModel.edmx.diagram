@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4e46686423d2487ab24996e614f54b75" Name="Diagram1">
-        <EntityTypeShape EntityType="LINQExercisesModel.Customer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.Product" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.Role" Width="1.5" PointX="0.625" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.Staff" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.Store" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.TransactionHead" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LINQExercisesModel.TransactionLine" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
-        <AssociationConnector Association="LINQExercisesModel.FK_TransactionHead_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="LINQExercisesModel.FK_TransactionLine_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="LINQExercisesModel.FK_Staff_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="LINQExercisesModel.FK_TransactionHead_Staff" ManuallyRouted="false" />
-        <AssociationConnector Association="LINQExercisesModel.FK_TransactionHead_Store" ManuallyRouted="false" />
-        <AssociationConnector Association="LINQExercisesModel.FK_TransactionLine_TransactionHead" ManuallyRouted="false" />
-        <AssociationConnector Association="LINQExercisesModel.StaffAssignment" ManuallyRouted="false" />
+      <Diagram DiagramId="5cee31deed6543e3966a2db6763068b2" Name="Diagram1">
+        <EntityTypeShape EntityType="LINQExercisesModel1.Customer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.Product" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.Role" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.Staff" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.Store" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.sysdiagrams" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.TransactionHead" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LINQExercisesModel1.TransactionLine" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="LINQExercisesModel1.FK_TransactionHead_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="LINQExercisesModel1.FK_TransactionLine_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="LINQExercisesModel1.FK_Staff_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="LINQExercisesModel1.FK_TransactionHead_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="LINQExercisesModel1.FK_TransactionHead_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="LINQExercisesModel1.FK_TransactionLine_TransactionHead" ManuallyRouted="false" />
+        <AssociationConnector Association="LINQExercisesModel1.StaffAssignment" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
